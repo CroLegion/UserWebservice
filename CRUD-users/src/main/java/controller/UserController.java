@@ -2,6 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,19 +23,19 @@ public class UserController {
 		user.getFirstName()+" "+user.getLastName()+" with the id of "+id);
 	}
 	@PostMapping("/user")
-	public ResponseEntity<?> save(@RequestBody User user){
+	public ResponseEntity<?> list(@RequestBody User user){
 		int id = userservice.save(user);
 	}
-	@PostMapping("/user")
-	public ResponseEntity<?> save(@RequestBody User user){
+	@PostMapping("/user{id}")
+	public ResponseEntity<?> update(@PathVariable("id") int id, User user){
 		int id = userservice.save(user);
 	}
-	@PostMapping("/user")
-	public ResponseEntity<?> save(@RequestBody User user){
+	@PostMapping("/user{id}")
+	public ResponseEntity<?> delete(@PathVariable("id") int id){
 		int id = userservice.save(user);
 	}
-	@PostMapping("/user")
-	public ResponseEntity<?> save(@RequestBody User user){
+	@PostMapping("/user{id}")
+	public ResponseEntity<?> getUser(@PathVariable("id") int id){
 		int id = userservice.save(user);
 	}
 }
