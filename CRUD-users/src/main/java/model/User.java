@@ -4,50 +4,63 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "users")
 public class User {
-	private String FirstName;
+	private String firstname;
 	
-	private String LastName;
 	
-	private String Email;
+	private String lastname;
+	
+	private String email;
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private int UserID;
+	private int userid;
 	
-	private int Securitylevel;
+	private int securitylevel;
 	
-	
-	public String getFirstName() {
-		return FirstName;
+	public String getFirstname() {
+		return firstname;
 	}
-	public void setFirstName(String firstName) {
-		FirstName = firstName;
+
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
-	public String getLastName() {
-		return LastName;
+
+	public String getLastname() {
+		return lastname;
 	}
-	public void setLastName(String lastName) {
-		LastName = lastName;
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
 	}
+
 	public String getEmail() {
-		return Email;
+		return email;
 	}
+
 	public void setEmail(String email) {
-		Email = email;
+		this.email = email;
 	}
-	public int getUserID() {
-		return UserID;
+
+	public int getUserid() {
+		return userid;
 	}
-	public void setUserID(int userID) {
-		UserID = userID;
+
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
+
 	public int getSecuritylevel() {
-		return Securitylevel;
+		return securitylevel;
 	}
+
 	public void setSecuritylevel(int securitylevel) {
-		Securitylevel = securitylevel;
+		this.securitylevel = securitylevel;
 	}
+
+	
 }

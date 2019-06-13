@@ -29,17 +29,16 @@ public class ImplementedService implements UserService{
 
 	@Override
 	public User getUser(int id) {
-		return userDAO.getUser(id);
+		return userDAO.getuser(id);
 	}
 
 	@Transactional
 	@Override
-	public void update(int id, User user) {
-		 userDAO.update(id, user);
+	public void update(int id, int id2) {
+		 userDAO.update(id, id2);
 		
 	}
 
-	@Transactional
 	@Override
 	public void delete(int id) {
 		 userDAO.delete(id);

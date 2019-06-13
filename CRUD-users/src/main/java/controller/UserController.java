@@ -21,30 +21,36 @@ public class UserController {
 	@Autowired
 	private UserService userservice;
 	
-	@PostMapping("/user")
-	public ResponseEntity<?> addUser(@RequestBody User user){
+	@PostMapping("/newUser/")
+	public ResponseEntity<?> addUser(@RequestBody User user ){
 		int id = userservice.addUser(user);
 		return ResponseEntity.ok().body("A new user has been added by the name of"+
-		user.getFirstName()+" "+user.getLastName()+" with the id of "+id);
+		user.getFirstname()+" "+user.getLastname()+" with the id of "+id);
 	}
-	@GetMapping("/user")
-	public ResponseEntity<?> list(@RequestBody User user){
+	@GetMapping("/users")
+	public ResponseEntity<?> list(){
 		List<User> listUsers = userservice.list();
 		return ResponseEntity.ok().body(listUsers);
 	}
-	@PutMapping("/user{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, User user){
-		userservice.update(id, user);
+	@PutMapping("/updateUser/{id}/{id2}")
+	public ResponseEntity<?> update(@PathVariable("id") int id, @PathVariable("id2") int id2){
+		userservice.update(id, id2);
 		return ResponseEntity.ok().body("The user has been updated.");
 	}
-	@DeleteMapping("/user{id}")
+	@DeleteMapping("/deleteUser/{id}")
 	public ResponseEntity<?> delete(@PathVariable("id") int id){
 		userservice.delete(id);
 		return ResponseEntity.ok().body("The user has been deleted");
 	}
-	@GetMapping("/user{id}")
+	@GetMapping("/getUser/{id}")
 	public ResponseEntity<?> getUser(@PathVariable("id") int id){
 		User user = userservice.getUser(id);
-		return ResponseEntity.ok().body(user);
+		try {
+			user.getFirstname();
+		} catch (NullPointerException e) {
+			return ResponseEntity.ok("Error, no user with id "+ id);
+		}{
+			return ResponseEntity.ok().body(user);
+		}
 	}
 }

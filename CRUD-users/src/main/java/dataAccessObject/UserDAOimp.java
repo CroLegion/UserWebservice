@@ -22,8 +22,9 @@ public class UserDAOimp implements UserDAO{
 	
 	@Override
 	public int addUser(User user) {
+		System.out.println(user.getFirstname());
 		sessionfactory.getCurrentSession().save(user);
-		return user.getUserID();
+		return user.getUserid();
 	}
 	@Override
 	public List<User> list() {
@@ -37,19 +38,20 @@ public class UserDAOimp implements UserDAO{
 	   }
 
 	@Override
-	public User getUser(int id) {
+	public User getuser(int id) {
+		System.out.println(id);
 		return sessionfactory.getCurrentSession().get(User.class, id);
 	}
 
 	@Override
-	public void update(int id, User user) {
+	public void update(int id, int id2) {
 		Session session = sessionfactory.getCurrentSession();
 		User userNew = session.byId(User.class).load(id);
-		userNew.setFirstName(user.getFirstName());
-		userNew.setLastName(user.getLastName());
-		userNew.setEmail(user.getEmail());
-		userNew.setSecuritylevel(user.getSecuritylevel());
-		userNew.setUserID(user.getUserID());
+//		userNew.setFirstname(id2.getFirstname());
+//		userNew.setLastname(id2.getLastname());
+//		userNew.setEmail(id2.getEmail());
+//		userNew.setSecuritylevel(id2.getSecuritylevel());
+//		userNew.setUserid(id2.getUserid());
 		session.flush();
 	}
 
