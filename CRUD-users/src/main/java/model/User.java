@@ -6,20 +6,34 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * @author jstil
+ * 
+ */
 @Entity
 @Table(name = "users")
 public class User {
+	/*
+	 * first name of a user
+	 */
 	private String firstname;
-	
-	
+	/*
+	 * last name of a user
+	 */
 	private String lastname;
-	
+	/*
+	 * email of user
+	 */
 	private String email;
-	
+	/*
+	 * ID number of user set up to be created on user creation 
+	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int userid;
-	
+	/*
+	 * security level of user set from 1-5 with 1 being lowest and 5 being highest
+	 */
 	private int securitylevel;
 	
 	public String getFirstname() {
@@ -61,6 +75,4 @@ public class User {
 	public void setSecuritylevel(int securitylevel) {
 		this.securitylevel = securitylevel;
 	}
-
-	
 }

@@ -22,8 +22,8 @@ public class UserDAOimp implements UserDAO{
 	
 	@Override
 	public int addUser(User user) {
-		System.out.println(user.getFirstname());
-		sessionfactory.getCurrentSession().save(user);
+		Session session = sessionfactory.getCurrentSession();
+		session.save(user);
 		return user.getUserid();
 	}
 	@Override
@@ -44,14 +44,24 @@ public class UserDAOimp implements UserDAO{
 	}
 
 	@Override
+	/**
+	 * Updates a user by their id with a user.
+	 */
 	public void update(int id, User user) {
 		Session session = sessionfactory.getCurrentSession();
 		User userNew = session.byId(User.class).load(id);
-		userNew.setFirstname(user.getFirstname());
-		userNew.setLastname(user.getLastname());
-		userNew.setEmail(user.getEmail());
-		userNew.setSecuritylevel(user.getSecuritylevel());
-		userNew.setUserid(user.getUserid());
+		if(user.getFirstname()!="") {
+			userNew.setFirstname(user.getFirstname());
+		}
+		if(user.getLastname()!=null){
+			userNew.setLastname(user.getLastname());
+		}
+		if(user.getEmail()!=null) {
+			userNew.setEmail(user.getEmail());
+		}
+		if(user.getSecuritylevel()!=0) {
+			userNew.setSecuritylevel(user.getSecuritylevel());
+		}
 		session.flush();
 	}
 
