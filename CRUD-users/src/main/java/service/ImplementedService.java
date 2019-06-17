@@ -34,8 +34,8 @@ public class ImplementedService implements UserService{
 
 	@Transactional
 	@Override
-	public void update(int id, int id2) {
-		 userDAO.update(id, id2);
+	public void update(int id, User user) {
+		 userDAO.update(id, user);
 		
 	}
 

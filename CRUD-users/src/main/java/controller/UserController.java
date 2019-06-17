@@ -32,9 +32,9 @@ public class UserController {
 		List<User> listUsers = userservice.list();
 		return ResponseEntity.ok().body(listUsers);
 	}
-	@PutMapping("/updateUser/{id}/{id2}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @PathVariable("id2") int id2){
-		userservice.update(id, id2);
+	@PutMapping("/updateUser/{id}")
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody User user){
+		userservice.update(id, user);
 		return ResponseEntity.ok().body("The user has been updated.");
 	}
 	@DeleteMapping("/deleteUser/{id}")
